@@ -9,12 +9,11 @@ class Motel(Estabelecimento):
         self.nome = nome
         self.quartos = quartos
 
-    def check_in(self, nome_hospede: str, cpf_hospede: str):
+    def check_in(self):
         quarto = self.procurar_quarto_disponivel()
 
         if quarto:
-            hospede = Hospede(nome=nome_hospede, cpf=cpf_hospede)
-            quarto.ocupar(datetime.now(), hospede)
+            quarto.ocupar(datetime.now())
             return quarto
         else:
             return None

@@ -66,9 +66,7 @@ def menu_motel(motel: Motel):
 
 
             if opcao == 1:
-                nome = input("Digite o nome do hóspede: ")
-                cpf = input("Digite o cpf do hóspede: ")
-                quarto = motel.check_in(nome_hospede=nome, cpf_hospede=cpf)
+                quarto = motel.check_in()
                 if quarto:
                     print(f"Check-in realizado com sucesso! Quarto {quarto.numero} está ocupado.")
                 else:

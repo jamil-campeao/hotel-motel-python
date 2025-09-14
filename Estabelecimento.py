@@ -22,27 +22,27 @@ class Estabelecimento(ABC):
     def check_out(self, numero_quarto: int) -> dict:
         quarto = self.procurar_quarto_por_numero(numero_quarto)
 
-        if quarto:
-
-            data_checkout = datetime.now()
-            valor_a_pagar = self.calcular_valor(quarto, data_checkout)
-
-            info = {
-                "sucesso": True,
-                "numero_quarto": numero_quarto,
-                "data_checkin": datetime.now(),
-                "data_checkout": data_checkout,
-                "valor_a_pagar": valor_a_pagar,
-            }
-
-            quarto.desocupar()
-
-            return info
-        else:
+        if quarto.ocupado == False:
             return {
                 "sucesso": False,
-                "mensagem": "Quartão não encontrado ou já está vago",
+                "mensagem": "Quarto não ocupado",
             }
+
+
+        data_checkout = datetime.now()
+        valor_a_pagar = self.calcular_valor(quarto, data_checkout)
+
+        info = {
+            "sucesso": True,
+            "numero_quarto": numero_quarto,
+            "data_checkin": datetime.now(),
+            "data_checkout": data_checkout,
+            "valor_a_pagar": valor_a_pagar,
+        }
+
+        quarto.desocupar()
+
+        return info
     @abstractmethod    
     def check_in(self):
         pass

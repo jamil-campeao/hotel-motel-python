@@ -9,7 +9,7 @@ class Quarto():
         self.hospede = None
         self.data_checkin = None
 
-    def ocupar(self, data_checkin: datetime, hospede: Hospede):
+    def ocupar(self, data_checkin: datetime, hospede: Hospede = None):
         self.data_checkin = data_checkin
         self.ocupado = True
         self.hospede = hospede
